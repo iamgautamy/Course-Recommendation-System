@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Courses</title>
+    <style>
+      body {
+        background: linear-gradient(to bottom, #4c5c7a, #f2f2f2);
+        text-overflow: ellipsis;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        text-align: center;
+        color: black;
+        text-overflow: ellipsis;
+      }
+
+      .tile {
+        border: 2px solid black;
+        padding: 5px;
+        margin: 10px;
+        text-overflow: ellipsis;
+        width: 200px;
+        height: 250px;
+        display: inline-block;
+        vertical-align: top;
+        background-color: #f2f2f2;
+        color: #333;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .tile:hover {
+        transform: translateY(-5px);
+        text-overflow: ellipsis;
+      }
+      .tile p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+      .tile h3 {
+        text-decoration: underline;
+        color: blue;
+        text-overflow: ellipsis;
+      }
+      
+
+      .search-form {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .search-input {
+        width: 300px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        font-size: 1.2em;
+      }
+
+      .search-btn {
+        padding: 10px 20px;
+        background-color: #4c5c7a;
+        color: white;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TOP COURSERA COURSES</h1>
+
+    <form action="{{ url_for('search') }}" method="POST" class="search-form">
+        <input type="text" name="q" class="search-input" placeholder="Search for courses">
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+
+    {% for index, row in data.iterrows() %}
+      <div class="tile" onclick="location.href='{{ row['Course URL'] }}'">
+        <h3>{{ row['Course Name'] }}</h3>
+        <p>Organisation: {{ row['University'] }}</p>
+        <p>Rating : {{ row['Course Rating'] }} / 5</p>
+      </div>
+    {% endfor %}
+  </body>
+</html>

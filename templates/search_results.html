@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Results for "{{ query }}"</title>
+    <style>
+      /* add your CSS styles here */
+      .card {
+        background-color: #f8f9fa;
+        border: 1px solid #d1d3e2;
+        border-radius: 5px;
+        margin: 10px;
+        text-overflow: ellipsis;
+        padding: 10px;
+        transition: all 0.3s ease-in-out;
+      }
+      .card:p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+      .card:hover {
+        background-color: #e9ecef;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        text-overflow: ellipsis;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if data %}
+    <h2>Results for "{{ query }}"</h2>
+    {% for row in data %}
+    <div class="card" onclick="location.href='{{ row['Course URL'] }}'">
+
+      <h3>{{ row['Course Name'] }}</h3>
+      <p>{{ row['University'] }}</p>
+      <p>{{row['Course Rating'] }} / 5</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2>No results found for "{{ query }}"</h2>
+    {% endif %}
+  </body>
+</html>
