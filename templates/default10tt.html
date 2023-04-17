@@ -75,7 +75,7 @@
     </style>
   </head>
   <body>
-    <h1>TOP COURSERA COURSES</h1>
+    <h1>TOP COURSES</h1>
 
     <form action="{{ url_for('search') }}" method="POST" class="search-form">
         <input type="text" name="q" class="search-input" placeholder="Search for courses">
@@ -83,7 +83,7 @@
     </form>
 
     {% for index, row in data.iterrows() %}
-      <div class="tile" onclick="location.href='{{ row['Course URL'] }}'">
+      <div title="Click to redirect" class="tile" onclick="location.href='{{ row['Course URL'] }}'">
         <h3>{{ row['Course Name'] }}</h3>
         <p>Organisation: {{ row['University'] }}</p>
         <p>Rating : {{ row['Course Rating'] }} / 5</p>
